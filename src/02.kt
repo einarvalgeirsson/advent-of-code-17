@@ -15,13 +15,36 @@ private val input = """116	1259	1045	679	1334	157	277	1217	218	641	1089	136	247	
 2432	4030	3397	4032	3952	2727	157	3284	3450	3229	4169	3471	4255	155	127	186
 919	615	335	816	138	97	881	790	855	89	451	789	423	108	95	116"""
 
+val arrayOfRows = input
+        .split("\n")
+        .map { it.split("\t") }
+        .map { it.map { it.toInt() }}
 
 fun main(args: Array<String>) {
-    val arrayOfRows = input
-            .split("\n")
-            .map { it.split("\t") }
-            .map { it.map { it.toInt() }}
+    println(part_1())
+    println(part_2())
+}
 
+private fun part_1(): Int {
     val sum = arrayOfRows.map { it.max()?.minus(it.min()!!) }
-    println(sum.sumBy { it!! })
+    return sum.sumBy { it!! }
+}
+
+private fun part_2(): Int {
+    var result = 0
+    arrayOfRows.forEach { row ->
+        result = result.plus(findInRow(row))
+    }
+    return result
+}
+
+private fun findInRow(row: List<Int>): Int {
+    row.forEach { dividend ->
+        row.forEach { divisor ->
+            if (dividend % divisor == 0 && dividend != divisor) {
+                return dividend / divisor
+            }
+        }
+    }
+    return 0
 }

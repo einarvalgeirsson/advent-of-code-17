@@ -43,11 +43,11 @@ val full = listOfNumbers.size
 val half = listOfNumbers.size/2
 
 fun main(args : Array<String>) {
-    println(silver())
-    println(gold())
+    println(part_1())
+    println(part_2())
 }
 
-fun silver(): Int {
+private fun part_1(): Int {
     var sum = 0
 
     listOfNumbers.forEachIndexed { index, i ->
@@ -62,7 +62,7 @@ fun silver(): Int {
     return sum
 }
 
-fun gold(): Int {
+private fun part_2(): Int {
     var sum = 0
     listOfNumbers.forEachIndexed { index, i ->
         if (i == listOfNumbers[getHalfwayIndexFrom(index)]) {
